@@ -1,45 +1,50 @@
-class Library {
+class Mobileshop {
   constructor() {
-    this.books = [];
+    this.mobiles = [];
   }
-  addBook(book) {
-    this.books.push(book);
+  addMobile(mobiles) {
+    this.mobiles.push(...mobiles);
   }
-  listAllBooks() {
-    this.books.forEach((book, index) => {
-      console.log(`${index + 1}) ${book.name} by ${book.author}`);
+  listAllMobiles() {
+    this.mobiles.forEach(function (mb, index) {
+      console.log(
+        `${index + 1}) ${mb.brand} - ${mb.model} - ${mb.color} - ${
+          mb.price
+        } - ${mb.specs}`
+      );
     });
   }
 }
 
-class Book {
-  constructor(name, isbn, price, author) {
-    this.name = name;
-    this.isbn = isbn;
+class Mobile {
+  constructor(brand, model, price, color, specs) {
+    this.id = Math.floor(Math.random() * 1000000);
+    this.brand = brand;
+    this.model = model;
     this.price = price;
-    this.author = author;
-    this.readStatus = false;
+    this.color = color;
+    this.specs = specs;
   }
-  info() {
+  getMobileInfo() {
     console.log(
-      `${this.readStatus ? "✅" : "❌"} ${this.name} is written by ${
-        this.author
-      } and you have ${
-        this.readStatus ? "read it and" : "have not read it yet and it "
-      } is available at Amazon at a price of ${this.price}`
+      `${this.brand} - ${this.model} - $${this.price} - ${this.color} - ${this.specs}`
     );
-  }
-  changeReadStatus() {
-    this.readStatus = !this.readStatus;
   }
 }
 
-let ctrLibrary = new Library();
-let b1 = new Book("The Alchemist", 1023456789, 499, "Paul Coelho");
-let b2 = new Book("Elven Minutes", 1098765432, 599, "Paulo Coelho");
-let b3 = new Book("the millionaire fastlane", 1234567890, 899, "Afrid Shaik");
-let b4 = new Book("Start with WHy?", 5678904321, 699, "Afrid");
-ctrLibrary.addBook(b1);
-ctrLibrary.addBook(b2);
-ctrLibrary.addBook(b3);
-ctrLibrary.addBook(b4);
+let zumZumMbls = new Mobileshop();
+let s22ultra = new Mobile(
+  "samsung",
+  "S22 Ultra",
+  120000,
+  "Burgundy Puruple",
+  "8GB RAM 256 ROM"
+);
+let iphone = new Mobile(
+  "Apple",
+  "15 Pro Max",
+  160000,
+  "Titanium Black",
+  "8GB RAM 256 ROM"
+);
+zumZumMbls.addMobile([s22ultra, iphone]);
