@@ -18,13 +18,16 @@ body {
 
 .container {
   width: 90%;
-  max-width: 400px;
+  max-width: 80rem;
   background-color: #1f1f1f;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  min-height: auto;
 }
-
+.container h1 {
+  text-align: center;
+}
 form {
   display: flex;
   justify-content: space-between;
