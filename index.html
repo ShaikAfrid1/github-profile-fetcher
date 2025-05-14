@@ -4,8 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="shortcut icon" href="/github-square.svg" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
   </head>
+  <body>
+    <div class="container">
+      <h1>GitHub Profile Fetcher</h1>
+      <form action="#">
+        <input type="text" placeholder="Enter GitHub Username" id="username" />
+        <button type="button" id="fetch-btn">Get Data!</button>
+      </form>
+
+      <div class="result">
+        <img id="avatar" src="" alt="Profile Image" />
+        <h3 id="Name"></h3>
+        <h5 id="public-repos"></h5>
+        <h5 id="followers"></h5>
+        <h5 id="following"></h5>
+        <h5 id="email"></h5>
+        <h5 id="linkdin"><a href="" target="_blank">LinkedIn Profile</a></h5>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

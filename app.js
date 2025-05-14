@@ -1,50 +1,36 @@
-class Mobileshop {
-  constructor() {
-    this.mobiles = [];
-  }
-  addMobile(mobiles) {
-    this.mobiles.push(...mobiles);
-  }
-  listAllMobiles() {
-    this.mobiles.forEach(function (mb, index) {
-      console.log(
-        `${index + 1}) ${mb.brand} - ${mb.model} - ${mb.color} - ${
-          mb.price
-        } - ${mb.specs}`
-      );
-    });
-  }
-}
+document.getElementById("fetch-btn").addEventListener("click", fetchProfiles);
 
-class Mobile {
-  constructor(brand, model, price, color, specs) {
-    this.id = Math.floor(Math.random() * 1000000);
-    this.brand = brand;
-    this.model = model;
-    this.price = price;
-    this.color = color;
-    this.specs = specs;
-  }
-  getMobileInfo() {
-    console.log(
-      `${this.brand} - ${this.model} - $${this.price} - ${this.color} - ${this.specs}`
-    );
-  }
-}
+function fetchProfiles() {
+  const userName = document.querySelector("#username").value.trim();
+  if (!userName) alert(`Please enter a valid 🧑‍💻GitHub username.`);
 
-let zumZumMbls = new Mobileshop();
-let s22ultra = new Mobile(
-  "samsung",
-  "S22 Ultra",
-  120000,
-  "Burgundy Puruple",
-  "8GB RAM 256 ROM"
-);
-let iphone = new Mobile(
-  "Apple",
-  "15 Pro Max",
-  160000,
-  "Titanium Black",
-  "8GB RAM 256 ROM"
-);
-zumZumMbls.addMobile([s22ultra, iphone]);
+  fetch(`https://api.github.com/users/${userName}`)
+    .then((raw) => raw.json())
+    .then((data) => {
+      if (data.message == "Not Found") alert("User not found.");
+      else {
+        document.querySelector(".result").style.display = "flex";
+        document.querySelector("#avatar").src = data.avatar_url;
+        document.querySelector("#Name").textContent = `Name: ${
+          data.name || "Not Available"
+        }`;
+        document.querySelector(
+          "#public-repos"
+        ).textContent = `Public Repos: ${data.public_repos}`;
+        document.querySelector(
+          "#followers"
+        ).textContent = `Followers: ${data.followers}`;
+        document.querySelector(
+          "#following"
+        ).textContent = `Following: ${data.following}`;
+        document.querySelector("#email").textContent = `Email: ${
+          data.email || "Not Available"
+        }`;
+        document.querySelector("#linkdin a").href = data.blog || "#";
+        document.querySelector("#linkdin a").textContent = data.blog
+          ? "LinkedIn Profile"
+          : "Not Available";
+      }
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+}
